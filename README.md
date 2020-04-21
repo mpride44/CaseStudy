@@ -18,7 +18,7 @@ run.py -> Python file to run the application.
 Test -> It is a package and contains the test case for testing the API. __"test_error.py"__ contains the all the code for testing the API.
 
 ## Step 1
-Run the *__"run.py"__*. It will run the application created in "__init__.py" in project package. In "__init__.py", Firsty we connect to the database with the help of pymongo driver, it created an instance of __MongoClient__ and then read the data from the database.
+Run the __"run.py"__. It will run the application created in "__init__.py" in project package. In "__init__.py", Firsty we connect to the database with the help of pymongo driver, it created an instance of __MongoClient__ and then read the data from the database.
 
 A root-end point for API request is also created in this. Once the request is received from the API, it executed its corresponding function and return the response according to the corresponding request.
 
