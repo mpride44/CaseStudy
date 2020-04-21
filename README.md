@@ -2,10 +2,12 @@
       CaseStudy 
             Project 
                 __init__.py
-            run.py
+                
             Test
                 __init__.py
                 test_error.py
+            run.py
+
 
 
 # Project Explanation
