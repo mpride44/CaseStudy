@@ -47,15 +47,15 @@ This project is all about collect data from twitter related to corona virus base
 
 # Phase 1: Collection of data from Twitter and Storing data in database.
 We use __Kafka__ to get the data from twitter and then use __Spark Streaming__ to get the data from Kafka topic and __MongoDB__ to store the data. First we need to create the developer account on twitter and generate keys. Then
-      1. Run zookeeper and kafka .
-      2. Make a topic in kafka with arbitrary  partitions and replication factor (recommended 3 and 1 respectively).
-      3. Open a code editor, load Twitter Producer code , and change all the pom.xml file as given TwitterProducer pom.xml              file. The Java version is 8.
-      4. Change the topic as your topic name.
-      5. Run the twitterProducer main()      
-      6. Open  SparkKafkaConnect program  as Scala program, configure the build.sbt file(in sbt)/(maven in gradle).
-      7. Subscribe the topic and select the mongodb(cloud or local) Database and collection.
-      8. Run the SparkKafkaConnect program.
-      9. All your filtered data is stored in mongoDB database.
+1. Run zookeeper and kafka .
+2. Make a topic in kafka with arbitrary  partitions and replication factor (recommended 3 and 1 respectively).
+3. Open a code editor, load Twitter Producer code , and change all the pom.xml file as given TwitterProducer pom.xml              file. The Java version is 8.
+4. Change the topic as your topic name.
+5. Run the twitterProducer main()      
+6. Open  SparkKafkaConnect program  as Scala program, configure the build.sbt file(in sbt)/(maven in gradle).
+7. Subscribe the topic and select the mongodb(cloud or local) Database and collection.
+8. Run the SparkKafkaConnect program.
+9. All your filtered data is stored in mongoDB database.
       
 # Phase 2: Writing an API service
 We build the Flask REST API which can be queried using Postman.
