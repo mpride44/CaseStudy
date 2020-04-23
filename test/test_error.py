@@ -35,12 +35,18 @@ class ErrorTests(unittest.TestCase):
 		self.assertNotEqual(result.status_code, 404)
 
 	def test_pagenotfound_statuscode3(self):
-		result = self.app.get("/api/tasks/4")
+		result = self.app.get("/api/tasks/3?country=all")
+
+		self.assertEqual(result.status_code, 200)
+
+
+	def test_pagenotfound_statuscode3(self):
+		result = self.app.get("/api/tasks/4?country=india?top=20")
 
 		self.assertEqual(result.status_code, 200)
 
 	def test_pagenotfound_statuscode3(self):
-		result = self.app.get("/api/tasks/3?country=all")
+		result = self.app.get("/api/tasks/5")
 
 		self.assertEqual(result.status_code, 200)
 	#This method is responsible for clearing our infrastructure setup.
