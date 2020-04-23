@@ -273,28 +273,25 @@ date_list=tasks_collection.distinct("created")
 #Then it return the responses after parsing the result in json format. 
 @app.route('/api/tasks/<int:q_no>', methods=['GET'])
 def get_tasks(q_no):
-	#print("date: " + request.args['date'])
-	query_date=""
-	country=""
-	top="-1"
-	if 'date' in request.args:
-		query_date=request.args['date']
-
-	if 'country' in request.args:
-		country=request.args['country']
-
-	if 'top' in request.args:
-		top=request.args['top']
-	
-	#return jsonify(query_date)
-	if (q_no == 1 and country != ""):
-		return jsonify(ques1(country))
-	elif (q_no == 2 and query_date != ""):
-		return jsonify(ques2(query_date))
-	elif(q_no == 3 and top != "-1"):
-		return jsonify(ques3(top))
-	else:
-		return jsonify([])
+      query_date=""
+      country=""
+      top="-1"
+      if 'date' in request.args:
+            query_date=request.args['date']
+      if 'country' in request.args:
+            country=request.args['country']
+      if 'top' in request.args:
+            top=request.args['top']
+      if (q_no == 1 and country != ""):
+            return jsonify(ques1(country))
+      elif (q_no == 2 and query_date != ""):
+            return jsonify(ques2(query_date))
+      elif(q_no == 3 and top != "-1"):
+            return jsonify(ques3(top))
+      elif (q_no ==4 and top !="-1" and country !=""):
+            return jsonify(ques4(top,country))
+      else:
+            return jsonify([])
 
 
 #@Params: Country is string datatype variable.
@@ -378,4 +375,46 @@ def ques3(top):
 		{"$project":{"Word":"$_id","Count":1,"_id":0 }}])
 	for doc in cursor:
 		task_list.append(doc)
-	return task_list		
+	return task_list
+#@Params: It takes two arguments from API.
+#@Return: It return the response for that query.
+#
+#What function does:
+#It count the occurence of words per country and return the result. 
+def ques4(top,country):
+      task_list=[]
+      top=int(top,10)
+      country=string.capwords(country.lower())
+      if(country == "all" or country == 'All'):
+            for country_name in location:
+                  list1=[]
+                  cursor=tasks_collection.aggregate([
+                        {"$match":{"location":country_name}},
+                        {"$project":{"word":{"$split":["$text"," "]}}},
+                        {"$unwind":"$word"},
+                        {"$group":{"_id":"$word","Count":{"$sum":1} }},
+                        {"$sort":{"Count":-1}},
+                        {"$limit":top},
+                        {"$project":{"Word":"$_id","Count":1,"_id":0 }}])
+                  for doc in cursor:
+                        list1.append(doc)
+                  task_list.append({"Country":country_name,"Result":list1})
+      else:
+            cursor=tasks_collection.aggregate([
+                        {"$match":{"location":country}},
+                        {"$project":{"word":{"$split":["$text"," "]}}},
+                        {"$unwind":"$word"},
+                        {"$group":{"_id":"$word","Count":{"$sum":1} }},
+                        {"$sort":{"Count":-1}},
+                        {"$limit":top},
+                        {"$project":{"Word":"$_id","Count":1,"_id":0 }}])
+            list1=[]
+            for doc in cursor:
+                        list1.append(doc)
+            task_list.append({"Country":country,"Result":list1})
+      return task_list
+
+                  
+
+
+
