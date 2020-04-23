@@ -10,7 +10,7 @@
             run.py
 
 # Explanation
-Main directory name is __Case Study__ under this three files are present Project, run.py and Test.
+Main directory name is __Case Study__ under this files are present Project, run.py and Test.
 
 Project -> It is a package and contains the code for the API.
 
