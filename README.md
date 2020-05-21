@@ -57,8 +57,8 @@ We build the Flask REST API which can be queried using Postman.
 2. Move to that directory -> cd CaseStudy
       Before executing the third command make sure that you have install higher version of Python 3 and pip. 
 3. Install the python virtual environment -> pip install pipenv
-4. Install Flask -> pipenv install Flask 
-5. To start the virtual environment -> pipenv shell
+4. Install Flask -> pipenv install Flask. 
+5. To start the virtual environment -> pipenv shell.
 6. To run the application -> python run.py
 
 ## To test the application
@@ -108,3 +108,5 @@ It contains all the test cases to test the API. Run the command __"pytest -v"__ 
 
 11.to import data into mongoDB: 
 	mongoimport -d databasename -c collectionname --file filename --jsonArray
+
+
